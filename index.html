@@ -48,6 +48,26 @@
       z-index: -1;
     }
 
+    .logo {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo i {
+      font-size: 28px;
+      background: linear-gradient(45deg, #4CAF50, #2196F3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
     .typed-text {
       font-size: 3.5rem;
       font-weight: 600;
@@ -107,47 +127,6 @@
       box-shadow: 0 10px 20px rgba(0,0,0,0.2);
     }
 
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      max-width: 1200px;
-      margin: 60px auto;
-      padding: 0 20px;
-    }
-
-    .feature-card {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 30px;
-      border-radius: 15px;
-      text-align: center;
-      backdrop-filter: blur(10px);
-      transition: transform 0.3s ease;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-10px);
-    }
-
-    .feature-card i {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      background: linear-gradient(45deg, #4CAF50, #2196F3);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .feature-card h3 {
-      color: white;
-      margin-bottom: 15px;
-    }
-
-    .feature-card p {
-      color: #e0e0e0;
-      font-size: 0.9rem;
-      line-height: 1.6;
-    }
-
     @media (max-width: 768px) {
       .typed-text {
         font-size: 2rem;
@@ -162,45 +141,28 @@
         width: 100%;
         margin: 10px 0;
       }
-
-      .features {
-        grid-template-columns: 1fr;
-      }
     }
   </style>
 </head>
 <body>
   <div class="hero">
+    <a href="#" class="logo">
+      <i class="fas fa-file-alt"></i>
+      DocManager
+    </a>
+    
     <div class="typed-text">
       <span id="typed"></span>
     </div>
     <p>A modern document management system designed to help you organize, store, and access your documents efficiently.</p>
     
     <div class="button-container">
-      <button onclick="location.href='form.html'">
-        <i class="fas fa-file-upload"></i> Upload Document
+      <button onclick="location.href='login.html'">
+        <i class="fas fa-sign-in-alt"></i> Login
       </button>
-      <button onclick="location.href='table.html'">
-        <i class="fas fa-table"></i> View Documents
+      <button onclick="location.href='signup.html'">
+        <i class="fas fa-user-plus"></i> Sign Up
       </button>
-    </div>
-
-    <div class="features">
-      <div class="feature-card">
-        <i class="fas fa-cloud-upload-alt"></i>
-        <h3>Easy Upload</h3>
-        <p>Simple and intuitive interface for quick document uploads</p>
-      </div>
-      <div class="feature-card">
-        <i class="fas fa-search"></i>
-        <h3>Quick Access</h3>
-        <p>Efficiently organize and retrieve your documents</p>
-      </div>
-      <div class="feature-card">
-        <i class="fas fa-shield-alt"></i>
-        <h3>Secure Storage</h3>
-        <p>Your documents are stored safely and securely</p>
-      </div>
     </div>
   </div>
 

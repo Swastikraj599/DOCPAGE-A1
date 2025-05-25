@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Upload Document</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1a1a1a 0%, #363636 100%);
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 50px 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2.5rem;
+      background: linear-gradient(45deg, #4CAF50, #2196F3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    form {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 40px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 500;
+      color: #e0e0e0;
+    }
+
+    input[type="text"],
+    input[type="date"] {
+      width: 100%;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      color: white;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    input[type="file"] {
+      width: 100%;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #4CAF50;
+      box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(45deg, #4CAF50, #2196F3);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    .uploading-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(5px);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .modal-content {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    }
+
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid rgba(255, 255, 255, 0.1);
+      border-left-color: #4CAF50;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+
+    .back-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      padding: 10px 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .back-button:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 768px) {
+      form {
+        padding: 20px;
+      }
+
+      h2 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="back-button" onclick="window.location.href='index.html'">
+    <i class="fas fa-arrow-left"></i> Back
+  </button>
+
+  <div class="container">
+    <h2>Upload Document</h2>
+    <form id="uploadForm">
+      <div class="form-group">
+        <label for="author">Author</label>
+        <input type="text" id="author" name="author" required />
+      </div>
+
+      <div class="form-group">
+        <label for="date">Date</label>
+        <input type="date" id="date" name="date" required />
+      </div>
+
+      <div class="form-group">
+        <label for="docName">Document Name</label>
+        <input type="text" id="docName" name="docName" required />
+      </div>
+
+      <div class="form-group">
+        <label for="file">File</label>
+        <input type="file" id="file" name="file" required />
+      </div>
+
+      <button type="submit">
+        <i class="fas fa-upload"></i> Upload Document
+      </button>
+    </form>
+  </div>
+
+  <div class="uploading-modal" id="modal">
+    <div class="modal-content">
+      <div class="spinner"></div>
+      <p>Uploading your document...</p>
+      <p>Please wait</p>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('uploadForm');
+    const modal = document.getElementById('modal');
+
+    // Set today's date as the default value
+    document.getElementById('date').valueAsDate = new Date();
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const author = document.getElementById('author').value;
+      const date = document.getElementById('date').value;
+      const docName = document.getElementById('docName').value;
+      const file = document.getElementById('file').files[0];
+
+      if (!file) {
+        alert("Please select a file.");
+        return;
+      }
+
+      const reader = new FileReader();
+
+      reader.onload = function() {
+        const base64Data = reader.result;
+
+        const data = {
+          id: Date.now(),
+          author,
+          date,
+          docName,
+          fileName: file.name,
+          fileType: file.type,
+          fileData: base64Data,
+          uploadDate: new Date().toISOString()
+        };
+
+        let existing = JSON.parse(localStorage.getItem('formDataList')) || [];
+        existing.push(data);
+        localStorage.setItem('formDataList', JSON.stringify(existing));
+
+        modal.style.display = 'flex';
+
+        setTimeout(() => {
+          modal.style.display = 'none';
+          window.location.href = 'table.html';
+        }, 1500);
+      };
+
+      reader.readAsDataURL(file);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Document Management System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+      background: #1a1a1a;
+    }
+
+    .hero {
+      height: 100vh;
+      width: 100%;
+      background: linear-gradient(135deg, #1a1a1a 0%, #363636 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      position: relative;
+      text-align: center;
+      padding: 0 40px;
+      z-index: 1;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 20%, rgba(76, 175, 80, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(33, 150, 243, 0.1) 0%, transparent 50%);
+      z-index: -1;
+    }
+
+    .typed-text {
+      font-size: 3.5rem;
+      font-weight: 600;
+      background: linear-gradient(45deg, #4CAF50, #2196F3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin: 25px 0 60px;
+      color: #e0e0e0;
+      max-width: 600px;
+      line-height: 1.6;
+    }
+
+    .button-container {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .hero button {
+      padding: 15px 35px;
+      font-size: 1.1rem;
+      background: transparent;
+      border: 2px solid;
+      border-image: linear-gradient(45deg, #4CAF50, #2196F3) 1;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .hero button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      background: linear-gradient(45deg, #4CAF50, #2196F3);
+      transition: all 0.3s ease;
+      z-index: -1;
+    }
+
+    .hero button:hover::before {
+      width: 100%;
+    }
+
+    .hero button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .feature-card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .feature-card i {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      background: linear-gradient(45deg, #4CAF50, #2196F3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .feature-card h3 {
+      color: white;
+      margin-bottom: 15px;
+    }
+
+    .feature-card p {
+      color: #e0e0e0;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .typed-text {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+        margin: 20px 0 40px;
+      }
+
+      .hero button {
+        width: 100%;
+        margin: 10px 0;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="typed-text">
+      <span id="typed"></span>
+    </div>
+    <p>A modern document management system designed to help you organize, store, and access your documents efficiently.</p>
+    
+    <div class="button-container">
+      <button onclick="location.href='form.html'">
+        <i class="fas fa-file-upload"></i> Upload Document
+      </button>
+      <button onclick="location.href='table.html'">
+        <i class="fas fa-table"></i> View Documents
+      </button>
+    </div>
+
+    <div class="features">
+      <div class="feature-card">
+        <i class="fas fa-cloud-upload-alt"></i>
+        <h3>Easy Upload</h3>
+        <p>Simple and intuitive interface for quick document uploads</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-search"></i>
+        <h3>Quick Access</h3>
+        <p>Efficiently organize and retrieve your documents</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-shield-alt"></i>
+        <h3>Secure Storage</h3>
+        <p>Your documents are stored safely and securely</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script>
+    new Typed('#typed', {
+      strings: ['Document Management System', 'Organize Your Files', 'Secure Storage Solution'],
+      typeSpeed: 50,
+      backSpeed: 25,
+      backDelay: 2000,
+      startDelay: 500,
+      loop: true,
+      showCursor: true,
+      cursorChar: '|',
+    });
+  </script>
+</body>
+</html>

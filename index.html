@@ -104,6 +104,9 @@
       position: relative;
       overflow: hidden;
       z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
     .hero button::before {
@@ -152,7 +155,7 @@
     </a>
     
     <div class="typed-text">
-      <span id="typed"></span>
+      Document Management System
     </div>
     <p>A modern document management system designed to help you organize, store, and access your documents efficiently.</p>
     
@@ -165,19 +168,5 @@
       </button>
     </div>
   </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-  <script>
-    new Typed('#typed', {
-      strings: ['Document Management System', 'Organize Your Files', 'Secure Storage Solution'],
-      typeSpeed: 50,
-      backSpeed: 25,
-      backDelay: 2000,
-      startDelay: 500,
-      loop: true,
-      showCursor: true,
-      cursorChar: '|',
-    });
-  </script>
 </body>
 </html>

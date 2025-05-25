@@ -9,6 +9,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>
     * {
       margin: 0;
@@ -250,16 +251,32 @@
       }
     });
 
-    // Initialize calendar
+    // Initialize calendar with document upload dates
+    const uploadDates = JSON.parse(localStorage.getItem('formDataList') || '[]')
+      .map(doc => doc.date);
+
     flatpickr("#calendar", {
       inline: true,
-      enable: ["2024-01-10", "2024-01-15", "2024-01-20"],
+      enable: uploadDates,
       dateFormat: "Y-m-d"
     });
 
-    // Sign out function
+    // Sign out function with confirmation
     function signOut() {
-      window.location.href = 'index.html';
+      Swal.fire({
+        title: 'Sign Out',
+        text: 'Are you sure you want to sign out?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#4CAF50',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, sign out',
+        background: 'rgba(255, 255, 255, 0.9)',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = 'index.html';
+        }
+      });
     }
   </script>
 </body>

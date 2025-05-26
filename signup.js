@@ -52,7 +52,7 @@ submit.addEventListener("click", function(event) {
     .then((userCredential) => {
       showToast("success", "🎉 Account Created Successfully!");
       setTimeout(() => {
-        window.location.href = "https://navriti.com/";
+        window.location.href = "dashboard.html";
       }, 1500);
     })
     .catch((error) => {

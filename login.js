@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .then((result) => {
           showToast("success", "Signed in with Google!");
           setTimeout(() => {
-            window.location.href = "https://document-management-vert.vercel.app/";
+            window.location.href = "dashboard.html";
           }, 1500);
         })
         .catch((error) => {

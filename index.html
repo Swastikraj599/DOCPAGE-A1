@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Document Management System</title>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
@@ -130,6 +131,47 @@
       box-shadow: 0 10px 20px rgba(0,0,0,0.2);
     }
 
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .feature-card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .feature-card i {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      background: linear-gradient(45deg, #4CAF50, #2196F3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .feature-card h3 {
+      color: white;
+      margin-bottom: 15px;
+    }
+
+    .feature-card p {
+      color: #e0e0e0;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
     @media (max-width: 768px) {
       .typed-text {
         font-size: 2rem;
@@ -154,13 +196,30 @@
       DocManager
     </a>
     
-    <div class="typed-text">
+    <!--<div class="typed-text">
       Document Management System
-    </div>
+    </div>-->
+    <div class="typed-text">
+  <span id="typed"></span>
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    new Typed('#typed', {
+      strings: ['Document Management System', 'Organize Your Files', 'Secure Storage Solution'],
+      typeSpeed: 50,
+      backSpeed: 30,
+      backDelay: 1500,
+      loop: true
+    });
+  });
+</script>
+
+
     <p>A modern document management system designed to help you organize, store, and access your documents efficiently.</p>
-    
+  
+
     <div class="button-container">
-      <button onclick="location.href='login.html'">
+      <button onclick="location.href='index1.html'">
         <i class="fas fa-sign-in-alt"></i> Login
       </button>
       <button onclick="location.href='signup.html'">
@@ -168,5 +227,22 @@
       </button>
     </div>
   </div>
+  <div class="features">
+      <div class="feature-card">
+        <i class="fas fa-cloud-upload-alt"></i>
+        <h3>Easy Upload</h3>
+        <p>Simple and intuitive interface for quick document uploads</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-search"></i>
+        <h3>Quick Access</h3>
+        <p>Efficiently organize and retrieve your documents</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-shield-alt"></i>
+        <h3>Secure Storage</h3>
+        <p>Your documents are stored safely and securely</p>
+      </div>
+    </div>
 </body>
 </html>
